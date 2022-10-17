@@ -6,18 +6,24 @@ GIT_VERSION="2.37.3"
 ZLIB_PREFIX=${ZLIB_PREFIX:-${GIT_PREFIX}}
 ZLIB_VERSION="1.2.12"
 
+# require superuser privileges
+if [ $(id -u) -ne 0 ]; then
+  echo "You need to run this script as superuser"
+  exit 1
+fi
+
 mkdir -p /tmp/git-installer
 cd /tmp/git-installer
-sudo apt update
+apt update
 # install dependencies
 # do not use `sudo apt-get build-dep git`
 # because deb-src is commented out by default in /etc/apt/sources.list
-sudo apt-get install -y build-essential dh-autoreconf libcurl4-gnutls-dev libexpat1-dev \
+apt-get install -y build-essential dh-autoreconf libcurl4-gnutls-dev libexpat1-dev \
   gettext libz-dev libssl-dev
 # libraries for generating documents
-sudo apt-get install -y asciidoc xmlto docbook2x
+apt-get install -y asciidoc xmlto docbook2x
 # manage installed documentation in info format
-sudo apt-get install -y install-info
+apt-get install -y install-info
 
 
 # download, build, install zlib (required library)
