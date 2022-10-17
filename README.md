@@ -8,9 +8,9 @@ scripts for installing git from source
 
 ## Usage
 ### with default configurations
-- `./installer.sh`
+- `sudo ./installer.sh`
 ### with custom configurations
-- `GIT_PREFIX={path_to_git_prefix} ./installer.sh`
+- `GIT_PREFIX={path_to_git_prefix} sudo ./installer.sh`
 
 ## Configurations
 ### Environment Variables
